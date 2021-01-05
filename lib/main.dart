@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: "/home",
       title: _title,
     ).modular();
   }
@@ -45,6 +46,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   ];
 
   void _onItemTapped(int index) {
+    if (index == 0) {
+      Modular.to.navigate('/home/');
+    } else if (index == 1) {
+      Modular.to.navigate('/business');
+    } else if (index == 2) {
+      Modular.to.navigate('/school');
+    }
     setState(() {
       _selectedIndex = index;
     });
@@ -57,7 +65,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         title: const Text('BottomNavigationBar Sample'),
       ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: RouterOutlet(),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
